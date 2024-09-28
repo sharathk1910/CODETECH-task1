@@ -1,7 +1,7 @@
 Name: Sharath Kumar M  
 Company: CODTECH IT SOLUTIONS  
 ID: CT08DS7567  
-Domain:* Data Science  
+Domain: Data Science  
 Duration: August to September 2024  
 Mentor: Neela Santhu  
 
