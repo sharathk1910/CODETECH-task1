@@ -1,0 +1,52 @@
+/*This project analyzes the Iris dataset using Python libraries (Pandas, Seaborn, Matplotlib) to visualize distributions, correlations, and relationships between features through histograms, scatter plots, box plots, and a correlation heatmap.*/
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+from sklearn.datasets import load_iris
+
+# Load the Iris dataset
+iris = load_iris()
+df = pd.DataFrame(data=iris.data, columns=iris.feature_names)
+
+# Add the target column
+df['target'] = iris.target
+
+# Renaming columns to remove parentheses for easy referencing
+df.columns = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'target']
+
+# Data characteristics
+print("Data Characteristics:")
+print(f"The dataset has {df.shape[0]} samples and {df.shape[1]} features.")
+print(f"The target variable has {df['target'].nunique()} unique classes.")
+
+# Summary statistics
+print("\nSummary Statistics:")
+print(df.describe())
+
+# Distribution of features
+print("\nDistribution of Features:")
+df.iloc[:, :-1].hist(bins=20, figsize=(10, 10))
+plt.show()
+
+# Scatter plots (Pairplot)
+print("\nScatter Plots:")
+sns.pairplot(df, vars=['sepal_length', 'sepal_width', 'petal_length', 'petal_width'], hue='target')
+plt.show()
+
+# Correlations
+print("\nCorrelations:")
+corr_matrix = df.corr()
+print(corr_matrix)
+
+# Heatmap of the correlation matrix
+print("\nHeatmap:")
+sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', square=True)
+plt.show()
+
+# Boxplots for features
+print("\nBoxplots:")
+df.iloc[:, :-1].plot(kind='box', subplots=True, layout=(2, 2), figsize=(10, 10))
+plt.show()
